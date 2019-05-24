@@ -9,5 +9,5 @@ provider "aws" {
 }
 
 module "infra" {
-  source = "modules/infra"
+  source = "./modules/infra"
 }
