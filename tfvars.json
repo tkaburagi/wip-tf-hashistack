@@ -1,0 +1,21 @@
+{
+  "data": {
+    "type":"vars",
+    "attributes":
+      {
+        "key": "vault_instance_count",
+        "value": "1",
+        "category":"terraform",
+        "hcl":false,
+        "sensitive":false
+      },
+    "relationships": {
+      "workspace": {
+        "data": {
+          "id":"ws-6cNELNLgcFZfM6t5",
+          "type":"workspaces"
+        }
+      }
+    }
+  }
+}
