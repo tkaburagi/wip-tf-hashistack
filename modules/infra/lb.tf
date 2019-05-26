@@ -16,7 +16,7 @@ resource "aws_alb_target_group" "vault_tg" {
   }
 }
 
-resource "aws_alb_target_group_attachment" "alb_attche_tg_boot" {
+resource "aws_alb_target_group_attachment" "alb_attach_tg_boot" {
   target_group_arn = "${aws_alb_target_group.vault_tg.arn}"
   target_id = "${aws_instance.vault_ec2.id}"
   port = 8200
@@ -33,4 +33,3 @@ resource "aws_alb_listener" "web_80" {
     target_group_arn = "${aws_alb_target_group.vault_tg.arn}"
   }
 }
-
