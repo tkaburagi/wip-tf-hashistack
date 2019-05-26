@@ -1,9 +1,12 @@
 resource "aws_alb" "vault_alb" {
   name = "vault-alb"
   internal = false
-  subnets = "${aws_subnet.public.*.id}"
+//  subnets = "${aws_subnet.public.*.id}"
   security_groups = ["${aws_security_group.vault_security_group.id}"]
-  allocation_id = "eipalloc-0df5c585eabf14148"
+  subnet_mapping {
+    subnet_id     = "${aws_subnet.public.*.id}"
+    allocation_id = "eipalloc-0df5c585eabf14148"
+  }
 }
 
 resource "aws_alb_target_group" "vault_tg" {
