@@ -6,7 +6,6 @@ resource "aws_instance" "vault_ec2" {
   subnet_id = "${element(aws_subnet.public.*.id, 0)}"
   key_name = "${aws_key_pair.deployer.id}"
   associate_public_ip_address = true
-  public_ip = "3.112.148.219"
 
   provisioner "local-exec" {
     command = "ls -ltrR && cat generate-vault-config.sh"
