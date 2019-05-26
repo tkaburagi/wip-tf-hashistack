@@ -36,9 +36,27 @@ resource "aws_instance" "vault_ec2" {
       "chmod +x vault",
       "nohup ./vault server -dev &",
       "chmod +x generate-vault-config.sh && ./generate-vault-config.sh",
+
+    ]
+  }
+
+  provisioner "remote-exec" {
+    connection {
+      host = "${aws_instance.vault_ec2.public_ip}"
+      type = "ssh"
+      user = "ubuntu"
+      private_key = "${var.ssh_private_key}"
+    }
+    inline = [
+      "wget ${var.vault_dl_url}",
+      "unzip vault*.zip",
+      "rm vault*.zip",
+      "chmod +x vault",
+      "chmod +x generate-vault-config.sh && ./generate-vault-config.sh",
       "ls -ltr",
       "sed s/VAULT_ADDR/${aws_instance.vault_ec2.public_dns}/g vault-config-template.hcl > vault-config.hcl",
-      "cat vault-config.hcl "
+      "cat vault-config.hcl ",
+      "nohup ./vault server vault-config.hcl -config  &",
     ]
   }
 }
