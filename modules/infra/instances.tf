@@ -34,10 +34,10 @@ resource "aws_instance" "vault_ec2" {
       "unzip vault*.zip",
       "rm vault*.zip",
       "chmod +x vault",
-      "ls -ltr",
       "nohup ./vault server -dev &",
       "chmod +x generate-vault-config.sh && ./generate-vault-config.sh",
-      "sed s/VAULT_ADDR/${aws_instance.vault_ec2.public_ip}/g > vault-config.hcl",
+      "ls -ltr",
+      "sed s/VAULT_ADDR/${aws_instance.vault_ec2.public_ip}/g vault-config-template.hcl > vault-config.hcl",
       "cat vault-config.hcl "
     ]
   }
