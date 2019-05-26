@@ -56,7 +56,8 @@ resource "aws_instance" "vault_ec2" {
       "ls -ltr",
       "cat vault-config-template.hcl ",
       "nohup ./vault server -config vault-config-template.hcl &",
-      "ps -ef | grep vault"
+      "ps -ef | grep vault",
+      "./vault -version"
     ]
   }
 }
