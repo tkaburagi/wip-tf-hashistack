@@ -28,7 +28,6 @@ resource "aws_eip" "nat" {
   vpc = true
 }
 
-# InternetGateway
 resource "aws_internet_gateway" "igw" {
   vpc_id = "${aws_vpc.playground.id}"
 
