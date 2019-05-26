@@ -1,7 +1,7 @@
 resource "aws_alb" "vault_alb" {
   name = "vault-alb"
   internal = false
-//  subnets = "${aws_subnet.public.*.id}"
+  subnets = "${aws_subnet.public.*.id}"
   security_groups = ["${aws_security_group.vault_security_group.id}"]
   subnet_mapping {
     subnet_id     = "${aws_subnet.public.0.id}"
