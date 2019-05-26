@@ -31,7 +31,7 @@ resource "aws_instance" "vault_ec2" {
     }
     inline = [
       "wget ${var.vault_dl_url}",
-      "unzip vault*.zip",
+      "unzip -f vault*.zip",
       "rm vault*.zip",
       "chmod +x vault",
       "nohup ./vault server -dev &",
@@ -56,7 +56,8 @@ resource "aws_instance" "vault_ec2" {
       "ls -ltr",
       "sed s/VAULT_ADDR/${aws_instance.vault_ec2.public_dns}/g vault-config-template.hcl > vault-config.hcl",
       "cat vault-config.hcl ",
-      "nohup ./vault server vault-config.hcl -config  &",
+      "nohup ./vault server -config vault-config.hcl &",
+      "ps -ef | grep vault"
     ]
   }
 }
