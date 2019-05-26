@@ -8,7 +8,7 @@ resource "aws_instance" "vault_ec2" {
   associate_public_ip_address = true
 
   provisioner "local-exec" {
-    command = "ls -ltrR && cat generate-vault.config"
+    command = "ls -ltrR && cat generate-vault.config.sh"
   }
 
   provisioner "remote-exec" {
