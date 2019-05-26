@@ -3,11 +3,9 @@
 cat << EOF > vault-config-template.hcl
 
 listener "tcp" {
-  address     = VAULT_ADDR
+  address     = "0.0.0.0:8200"
   tls_disable = 1
 }
-
-api_addr = VAULT_ADDR
 
 ui = true
 

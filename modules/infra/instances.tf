@@ -52,11 +52,10 @@ resource "aws_instance" "vault_ec2" {
       "unzip vault*.zip",
       "rm vault*.zip",
       "chmod +x vault",
-      "chmod +x generate-vault-config.sh && ./generate-vault-config.sh",
+      "chmod +x vault-config-template.hcl && ./vault-config-template.hcl",
       "ls -ltr",
-      "sed s/VAULT_ADDR/${aws_instance.vault_ec2.public_dns}/g vault-config-template.hcl > vault-config.hcl",
-      "cat vault-config.hcl ",
-      "nohup ./vault server -config vault-config.hcl &",
+      "cat vault-config-template.hcl ",
+      "nohup ./vault server -config vault-config-template.hcl &",
       "ps -ef | grep vault"
     ]
   }
