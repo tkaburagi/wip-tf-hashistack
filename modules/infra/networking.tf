@@ -52,3 +52,10 @@ resource "aws_route_table_association" "public" {
   subnet_id = "${element(aws_subnet.public.*.id, 0)}"
   route_table_id = "${aws_route_table.public.id}"
 }
+
+# NatGateway
+resource "aws_nat_gateway" "nat" {
+  count = 1
+  subnet_id = "${element(aws_subnet.public.*.id, 0)}"
+  allocation_id = "${aws_eip.nat.id}"
+}

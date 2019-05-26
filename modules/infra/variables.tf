@@ -5,6 +5,10 @@ variable "consul_instance_count" {
   default = 1
 }
 
+variable "pubkey" {}
+
+variable "ssh_private_key" {}
+
 variable "availability_zones" {
   type = "list"
   default = ["ap-northeast-1a", "ap-northeast-1c"]
@@ -28,5 +32,9 @@ variable "vault_instance_type" {
 }
 
 variable "ami" {
-  default = "ami-01dd8d2c0817e2194"
+  default = "ami-64e8fc18"
+}
+
+variable "vault_dl_url" {
+  default = "https://releases.hashicorp.com/vault/1.1.2/vault_1.1.2_linux_amd64.zip"
 }

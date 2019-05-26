@@ -1,0 +1,126 @@
+Must specify at least one config path using -config
+Must specify at least one config path using -config
+==> Vault server configuration:
+
+             Api Address: http://127.0.0.1:8200
+                     Cgo: disabled
+         Cluster Address: https://127.0.0.1:8201
+              Listener 1: tcp (addr: "127.0.0.1:8200", cluster address: "127.0.0.1:8201", max_request_duration: "1m30s", max_request_size: "33554432", tls: "disabled")
+               Log Level: info
+                   Mlock: supported: false, enabled: false
+                 Storage: inmem
+                 Version: Vault v1.1.1+ent
+             Version Sha: 7a8b0b75453b40e25efdaf67871464d2dcf17a46
+
+WARNING! dev mode is enabled! In this mode, Vault runs entirely in-memory
+and starts unsealed with a single unseal key. The root token is already
+authenticated to the CLI, so you can immediately begin using Vault.
+
+You may need to set the following environment variable:
+
+    $ export VAULT_ADDR='http://127.0.0.1:8200'
+
+The unseal key and root token are displayed below in case you want to
+seal/unseal the Vault or re-authenticate.
+
+Unseal Key: PxCDqlQFlGIaJAwpNzhgZiBUPimCqkkRx4X2TdR8DgQ=
+Root Token: s.1ahnWbaP00iBBLQA37X3ulHx
+
+Development mode should NOT be used in production installations!
+
+==> Vault server started! Log data will stream in below:
+
+2019-05-25T23:34:29.271+0900 [WARN]  no `api_addr` value specified in config or in VAULT_API_ADDR; falling back to detection if possible, but this value should be manually set
+2019-05-25T23:34:29.282+0900 [INFO]  core: security barrier not initialized
+2019-05-25T23:34:29.283+0900 [INFO]  core: security barrier initialized: shares=1 threshold=1
+2019-05-25T23:34:29.284+0900 [INFO]  core: post-unseal setup starting
+2019-05-25T23:34:29.296+0900 [INFO]  core: loaded wrapping token key
+2019-05-25T23:34:29.296+0900 [INFO]  core: successfully setup plugin catalog: plugin-directory=
+2019-05-25T23:34:29.296+0900 [INFO]  core: no mounts; adding default mount table
+2019-05-25T23:34:29.299+0900 [INFO]  core: successfully mounted backend: type=cubbyhole path=cubbyhole/
+2019-05-25T23:34:29.302+0900 [INFO]  core: successfully mounted backend: type=system path=sys/
+2019-05-25T23:34:29.303+0900 [INFO]  core: successfully mounted backend: type=identity path=identity/
+2019-05-25T23:34:29.308+0900 [INFO]  core: successfully enabled credential backend: type=token path=token/
+2019-05-25T23:34:29.308+0900 [INFO]  core: restoring leases
+2019-05-25T23:34:29.308+0900 [INFO]  rollback: starting rollback manager
+2019-05-25T23:34:29.310+0900 [INFO]  expiration: lease restore complete
+2019-05-25T23:34:29.310+0900 [INFO]  identity: entities restored
+2019-05-25T23:34:29.310+0900 [INFO]  identity: groups restored
+2019-05-25T23:34:29.310+0900 [INFO]  mfa: configurations restored
+2019-05-25T23:34:29.310+0900 [INFO]  core: setting up replication
+2019-05-25T23:34:29.311+0900 [INFO]  core: replicated cluster information not found or disabled, not activating client
+2019-05-25T23:34:29.311+0900 [INFO]  core: replication setup finished
+2019-05-25T23:34:29.311+0900 [INFO]  core: post-unseal setup complete
+2019-05-25T23:34:29.312+0900 [INFO]  core: root token generated
+2019-05-25T23:34:29.312+0900 [INFO]  core: pre-seal teardown starting
+2019-05-25T23:34:29.312+0900 [INFO]  core: stopping replication
+2019-05-25T23:34:29.312+0900 [INFO]  core: closed sync connection
+2019-05-25T23:34:29.312+0900 [INFO]  core: replication stopped
+2019-05-25T23:34:29.312+0900 [INFO]  rollback: stopping rollback manager
+2019-05-25T23:34:29.312+0900 [INFO]  core: pre-seal teardown complete
+2019-05-25T23:34:29.312+0900 [INFO]  core: vault is unsealed
+2019-05-25T23:34:29.312+0900 [INFO]  core.cluster-listener: starting listener: listener_address=127.0.0.1:8201
+2019-05-25T23:34:29.312+0900 [INFO]  core.cluster-listener: serving cluster requests: cluster_listen_address=127.0.0.1:8201
+2019-05-25T23:34:29.312+0900 [INFO]  core: post-unseal setup starting
+2019-05-25T23:34:29.312+0900 [INFO]  core: loaded wrapping token key
+2019-05-25T23:34:29.312+0900 [INFO]  core: successfully setup plugin catalog: plugin-directory=
+2019-05-25T23:34:29.312+0900 [INFO]  core: successfully mounted backend: type=system path=sys/
+2019-05-25T23:34:29.312+0900 [INFO]  core: successfully mounted backend: type=identity path=identity/
+2019-05-25T23:34:29.312+0900 [INFO]  core: successfully mounted backend: type=cubbyhole path=cubbyhole/
+2019-05-25T23:34:29.313+0900 [INFO]  core: successfully enabled credential backend: type=token path=token/
+2019-05-25T23:34:29.313+0900 [INFO]  core: restoring leases
+2019-05-25T23:34:29.313+0900 [INFO]  rollback: starting rollback manager
+2019-05-25T23:34:29.313+0900 [INFO]  identity: entities restored
+2019-05-25T23:34:29.313+0900 [INFO]  identity: groups restored
+2019-05-25T23:34:29.313+0900 [INFO]  mfa: configurations restored
+2019-05-25T23:34:29.313+0900 [INFO]  core: setting up replication
+2019-05-25T23:34:29.313+0900 [INFO]  core: replicated cluster information not found or disabled, not activating client
+2019-05-25T23:34:29.313+0900 [INFO]  core: replication setup finished
+2019-05-25T23:34:29.313+0900 [INFO]  core: post-unseal setup complete
+2019-05-25T23:34:29.313+0900 [INFO]  expiration: lease restore complete
+2019-05-25T23:34:29.318+0900 [INFO]  core: successful mount: namespace= path=secret/ type=kv
+2019-05-25T23:34:29.327+0900 [INFO]  secrets.kv.kv_4c7c2970: collecting keys to upgrade
+2019-05-25T23:34:29.327+0900 [INFO]  secrets.kv.kv_4c7c2970: done collecting keys: num_keys=1
+2019-05-25T23:34:29.327+0900 [INFO]  secrets.kv.kv_4c7c2970: upgrading keys finished
+2019-05-25T23:35:29.282+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=29m0s
+2019-05-25T23:36:29.284+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=28m0s
+2019-05-25T23:37:29.285+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=27m0s
+2019-05-25T23:38:29.288+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=26m0s
+2019-05-25T23:39:29.289+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=25m0s
+2019-05-25T23:40:29.292+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=24m0s
+2019-05-25T23:41:29.296+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=23m0s
+2019-05-25T23:42:29.301+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=22m0s
+2019-05-25T23:43:29.308+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=21m0s
+2019-05-25T23:44:29.313+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=20m0s
+2019-05-25T23:45:29.321+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=19m0s
+2019-05-25T23:46:29.333+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=18m0s
+2019-05-25T23:47:29.336+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=17m0s
+2019-05-25T23:48:29.342+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=16m0s
+2019-05-25T23:49:29.347+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=15m0s
+2019-05-25T23:50:29.349+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=14m0s
+2019-05-25T23:51:29.352+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=13m0s
+2019-05-25T23:52:29.354+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=12m0s
+2019-05-25T23:53:29.360+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=11m0s
+2019-05-25T23:54:29.365+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=10m0s
+2019-05-25T23:55:29.378+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=9m0s
+2019-05-25T23:56:29.388+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=8m0s
+2019-05-25T23:57:29.398+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=7m0s
+2019-05-25T23:58:29.410+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=6m0s
+2019-05-25T23:59:29.418+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=5m0s
+2019-05-26T00:00:29.423+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=4m0s
+2019-05-26T00:01:29.431+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=3m0s
+2019-05-26T00:02:29.421+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=2m0s
+2019-05-26T00:03:29.424+0900 [WARN]  core.licensing: core: licensing warning: expiration_time="2019-05-26 00:04:29 +0900 JST" time_left=1m0s
+2019-05-26T00:04:29.320+0900 [ERROR] core.licensing: core: licensing error: error="invalid license or license is expired"
+2019-05-26T00:04:29.321+0900 [INFO]  core: marked as sealed
+2019-05-26T00:04:29.321+0900 [INFO]  core: pre-seal teardown starting
+2019-05-26T00:04:29.321+0900 [INFO]  core: stopping replication
+2019-05-26T00:04:29.321+0900 [INFO]  core: closed sync connection
+2019-05-26T00:04:29.321+0900 [INFO]  core: replication stopped
+2019-05-26T00:04:29.321+0900 [INFO]  rollback: stopping rollback manager
+2019-05-26T00:04:29.321+0900 [INFO]  core: pre-seal teardown complete
+2019-05-26T00:04:29.321+0900 [INFO]  core: stopping cluster listeners
+2019-05-26T00:04:29.321+0900 [INFO]  core.cluster-listener: forwarding rpc listeners stopped
+2019-05-26T00:04:29.611+0900 [INFO]  core.cluster-listener: rpc listeners successfully shut down
+2019-05-26T00:04:29.611+0900 [INFO]  core: cluster listeners successfully shut down
+2019-05-26T00:04:29.611+0900 [INFO]  core: vault is sealed

@@ -7,7 +7,7 @@ resource "aws_alb" "vault_alb" {
 
 resource "aws_alb_target_group" "vault_tg" {
   name = "vault-tg"
-  port = 80
+  port = 8200
   protocol = "HTTP"
   vpc_id = "${aws_vpc.playground.id}"
 
@@ -19,7 +19,7 @@ resource "aws_alb_target_group" "vault_tg" {
 resource "aws_alb_target_group_attachment" "alb_attche_tg_boot" {
   target_group_arn = "${aws_alb_target_group.vault_tg.arn}"
   target_id = "${aws_instance.vault_ec2.id}"
-  port = 80
+  port = 8200
 }
 
 # Listener for HTTP/HTTPS
