@@ -20,4 +20,5 @@ module "infra" {
   source = "./modules/infra"
   ssh_private_key = var.ssh_private_key
   pubkey = var.pubkey
+  vault_dl_url = var.vault_dl_url
 }

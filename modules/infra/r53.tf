@@ -1,9 +1,5 @@
-resource "aws_route53_zone" "primary" {
-  name = "kabuctl.run"
-}
-
 resource "aws_route53_record" "vault" {
-  zone_id = "${aws_route53_zone.primary.id}"
+  zone_id = var.aws_route53_zone_id
   name    = "vault.kabuctl.run"
   type    = "CNAME"
   ttl     = "300"

@@ -35,6 +35,8 @@ variable "ami" {
   default = "ami-64e8fc18"
 }
 
-variable "vault_dl_url" {
-  default = "https://releases.hashicorp.com/vault/1.1.2/vault_1.1.2_linux_amd64.zip"
+variable "vault_dl_url" {}
+
+variable "aws_route53_zone_id" {
+  default = "Z1P2KB2X8LWEX"
 }
