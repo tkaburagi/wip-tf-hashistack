@@ -124,3 +124,5 @@ Development mode should NOT be used in production installations!
 2019-05-26T00:04:29.611+0900 [INFO]  core.cluster-listener: rpc listeners successfully shut down
 2019-05-26T00:04:29.611+0900 [INFO]  core: cluster listeners successfully shut down
 2019-05-26T00:04:29.611+0900 [INFO]  core: vault is sealed
+==> Vault reload triggered
+2019-05-26T14:16:07.160+0900 [ERROR] no config found at reload time

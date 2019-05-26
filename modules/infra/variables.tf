@@ -38,3 +38,7 @@ variable "ami" {
 variable "vault_dl_url" {
   default = "https://releases.hashicorp.com/vault/1.1.2/vault_1.1.2_linux_amd64.zip"
 }
+
+variable "ssh_key_file" {
+  default = "terraform"
+}

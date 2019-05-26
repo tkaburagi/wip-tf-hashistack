@@ -8,7 +8,12 @@ resource "aws_instance" "vault_ec2" {
   associate_public_ip_address = true
 
   provisioner "local-exec" {
-    command = "ls -ltrR && cat generate-vault.config.sh"
+    command = "ls -ltrR && cat generate-vault-config.sh"
+  }
+
+  provisioner "file" {
+    source = "generate-vault-config.sh"
+    destination = "/home/ubuntu/generate-vault-config.sh"
   }
 
   provisioner "remote-exec" {
@@ -16,7 +21,7 @@ resource "aws_instance" "vault_ec2" {
       host = "${aws_instance.vault_ec2.public_ip}"
       type = "ssh"
       user = "ubuntu"
-      private_key = var.ssh_private_key
+      private_key = "${var.ssh_private_key}"
     }
     inline = [
       "wget ${var.vault_dl_url}",
@@ -24,9 +29,10 @@ resource "aws_instance" "vault_ec2" {
       "rm vault*.zip",
       "chmod +x vault",
       "ls -ltr",
-      "nohup vault server -dev &",
-      "echo ${aws_instance.vault_ec2.private_ip} >> private_ips.txt",
-      "cat private_ips.txt"
+      "nohup ./vault server -dev &",
+      "chmod +x generate-vault-config.sh && ./generate-vault-config.sh",
+      "sed s/VAULT_ADDR/${aws_instance.vault_ec2.public_ip}/g > vault-config.hcl",
+      "cat vault-config.hcl "
     ]
   }
 }
