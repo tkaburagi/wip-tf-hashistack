@@ -37,7 +37,7 @@ resource "aws_instance" "vault_ec2" {
       "nohup ./vault server -dev &",
       "chmod +x generate-vault-config.sh && ./generate-vault-config.sh",
       "ls -ltr",
-      "sed s/VAULT_ADDR/${aws_instance.vault_ec2.public_ip}/g vault-config-template.hcl > vault-config.hcl",
+      "sed s/VAULT_ADDR/${aws_instance.vault_ec2.public_dns}/g vault-config-template.hcl > vault-config.hcl",
       "cat vault-config.hcl "
     ]
   }
