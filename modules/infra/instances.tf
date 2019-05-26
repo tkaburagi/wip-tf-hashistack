@@ -12,6 +12,12 @@ resource "aws_instance" "vault_ec2" {
   }
 
   provisioner "file" {
+    connection {
+      host = "${aws_instance.vault_ec2.public_ip}"
+      type = "ssh"
+      user = "ubuntu"
+      private_key = "${var.ssh_private_key}"
+    }
     source = "generate-vault-config.sh"
     destination = "/home/ubuntu/generate-vault-config.sh"
   }
