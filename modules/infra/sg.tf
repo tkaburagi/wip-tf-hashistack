@@ -2,7 +2,7 @@
 resource "aws_security_group" "vault_security_group" {
   name = "vault_security_group"
   description = "Vault Sercuriy Group"
-  vpc_id = "${aws_vpc.playground.id}"
+  vpc_id = aws_vpc.playground.id
 
   ingress {
     from_port = -1

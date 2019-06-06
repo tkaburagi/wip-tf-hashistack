@@ -1,10 +1,10 @@
 resource "aws_instance" "vault_ec2" {
   ami = var.ami
   instance_type = var.vault_instance_type
-  vpc_security_group_ids = ["${aws_security_group.vault_security_group.id}"]
+  vpc_security_group_ids = [aws_security_group.vault_security_group.id]
 //  tags = "${merge(var.tags, map("Name", "${var.web_front_instance_name}"))}"
-  subnet_id = "${element(aws_subnet.public.*.id, 0)}"
-  key_name = "${aws_key_pair.deployer.id}"
+  subnet_id = element(aws_subnet.public.*.id)[0]
+  key_name = aws_key_pair.deployer.id
   associate_public_ip_address = true
 
   provisioner "local-exec" {
@@ -13,10 +13,10 @@ resource "aws_instance" "vault_ec2" {
 
   provisioner "file" {
     connection {
-      host = "${aws_instance.vault_ec2.public_ip}"
+      host = aws_instance.vault_ec2.public_ip
       type = "ssh"
       user = "ubuntu"
-      private_key = "${var.ssh_private_key}"
+      private_key = var.ssh_private_key
     }
     source = "generate-vault-config.sh"
     destination = "/home/ubuntu/generate-vault-config.sh"
@@ -24,10 +24,10 @@ resource "aws_instance" "vault_ec2" {
 
   provisioner "remote-exec" {
     connection {
-      host = "${aws_instance.vault_ec2.public_ip}"
+      host = aws_instance.vault_ec2.public_ip
       type = "ssh"
       user = "ubuntu"
-      private_key = "${var.ssh_private_key}"
+      private_key = var.ssh_private_key
     }
     inline = [
       "wget ${var.vault_dl_url}",
@@ -42,10 +42,10 @@ resource "aws_instance" "vault_ec2" {
 
   provisioner "remote-exec" {
     connection {
-      host = "${aws_instance.vault_ec2.public_ip}"
+      host = aws_instance.vault_ec2.public_ip
       type = "ssh"
       user = "ubuntu"
-      private_key = "${var.ssh_private_key}"
+      private_key = var.ssh_private_key
     }
     inline = [
       "wget ${var.vault_dl_url}",
