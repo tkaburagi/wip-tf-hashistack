@@ -10,8 +10,8 @@ resource "aws_vpc" "playground" {
 resource "aws_subnet" "public" {
   vpc_id = aws_vpc.playground.id
   count = length(var.availability_zones)
-  cidr_block = element(var.pubic_subnets_cidr)[count.index]
-  availability_zone = element(var.availability_zones)[count.index]
+  cidr_block = var.pubic_subnets_cidr[count.index]
+  availability_zone = var.availability_zones[count.index]
   tags = {
     Name = "${var.public_subnet_name}-${count.index}"
   }
@@ -47,14 +47,14 @@ resource "aws_route_table" "public" {
 
 # SubnetRouteTableAssociation
 resource "aws_route_table_association" "public" {
-  count = length(var.pubic_subnets_cidr
-  subnet_id = element(aws_subnet.public.*.id)[0]
+  count = length(var.pubic_subnets_cidr)
+  subnet_id = aws_subnet.public.*.id[0]
   route_table_id = aws_route_table.public.id
 }
 
 # NatGateway
 resource "aws_nat_gateway" "nat" {
   count = 1
-  subnet_id = element(aws_subnet.public.*.id)[0]
+  subnet_id = aws_subnet.public.*.id[0]
   allocation_id = aws_eip.nat.id
 }
