@@ -1,5 +1,9 @@
 #!/bin/sh
 
+echo `pwd` >> pwd
+
+touch test
+
 cat << EOF > vault-config-template.hcl
 
 storage "file" {
@@ -16,3 +20,7 @@ ui = true
 disable_mlock = true
 
 EOF
+
+
+
+echo "finished!"
