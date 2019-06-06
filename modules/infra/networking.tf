@@ -19,8 +19,8 @@ resource "aws_subnet" "public" {
 
 # EIP
 resource "aws_eip" "vault_eip" {
-  instance = aws_instance.vault_ec2.id
   count = var.vault_instance_count
+  instance = aws_instance.vault_ec2.*.id[count.index]
   vpc = true
 }
 

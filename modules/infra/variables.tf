@@ -31,12 +31,32 @@ variable "vault_instance_type" {
   default = "t2.micro"
 }
 
+variable "consul_instance_type" {
+  default = "t2.micro"
+}
+
 variable "ami" {
   default = "ami-64e8fc18"
 }
 
 variable "vault_dl_url" {}
 
+variable "consul_dl_url" {}
+
 variable "aws_route53_zone_id" {
   default = "Z1P2KB2X8LWEX"
+}
+
+variable "consul_instance_name" {
+  default = "consul"
+}
+
+variable "vault_instance_name" {
+  default = "vault"
+}
+
+variable "tags" {
+  type        = "map"
+  default     = {}
+  description = "Key/value tags to assign to all AWS resources"
 }

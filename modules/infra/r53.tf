@@ -11,5 +11,5 @@ resource "aws_route53_record" "consul" {
   name    = "consul.kabuctl.run"
   type    = "CNAME"
   ttl     = "300"
-  records = [aws_alb.vault_alb.dns_name]
+  records = [aws_alb.consul_alb.dns_name]
 }
