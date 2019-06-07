@@ -5,8 +5,10 @@ variable "consul_instance_count" {
   default = 1
 }
 
+variable "access_key" {}
+variable "secret_key" {}
+variable "kms_key_id" {}
 variable "pubkey" {}
-
 variable "ssh_private_key" {}
 
 variable "availability_zones" {

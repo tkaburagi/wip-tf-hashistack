@@ -1,7 +1,10 @@
 resource "aws_instance" "consul_ec2" {
   ami = var.ami
   count = var.consul_instance_count
-  tags = merge(var.tags, map("Name", "${var.consul_instance_name}-${count.index}-hashistack"))
+  tags = merge(var.tags, map(
+          "Name", "${var.consul_instance_name}-${count.index}-hashistack",
+          "Consul_server", "true"
+  ))
   instance_type = var.consul_instance_type
   vpc_security_group_ids = [aws_security_group.consul_security_group.id]
    subnet_id = aws_subnet.public.*.id[0]

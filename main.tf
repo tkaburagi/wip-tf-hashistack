@@ -18,6 +18,9 @@ provider "aws" {
 
 module "infra" {
   source = "./modules/infra"
+  kms_key_id = var.kms_key_id
+  access_key = var.access_key
+  secret_key = var.secret_key
   ssh_private_key = var.ssh_private_key
   pubkey = var.pubkey
   vault_dl_url = var.vault_dl_url

@@ -39,6 +39,41 @@ resource "aws_security_group" "vault_security_group" {
     to_port = 8200
   }
 
+  ingress {
+    cidr_blocks = ["0.0.0.0/0"]
+    protocol = "tcp"
+    from_port = 8500
+    to_port = 8500
+  }
+
+  ingress {
+    cidr_blocks = ["0.0.0.0/0"]
+    protocol = "tcp"
+    from_port = 8300
+    to_port = 8300
+  }
+
+  ingress {
+    cidr_blocks = ["0.0.0.0/0"]
+    protocol = "tcp"
+    from_port = 8600
+    to_port = 8600
+  }
+
+  ingress {
+    cidr_blocks = ["0.0.0.0/0"]
+    protocol = "tcp"
+    from_port = 8301
+    to_port = 8301
+  }
+
+  ingress {
+    cidr_blocks = ["0.0.0.0/0"]
+    protocol = "tcp"
+    from_port = 8302
+    to_port = 8302
+  }
+
   egress {
     cidr_blocks = ["0.0.0.0/0"]
     protocol = "-1"

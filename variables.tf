@@ -1,5 +1,6 @@
 variable "access_key" {}
 variable "secret_key" {}
+variable "kms_key_id" {}
 
 variable "region" {
   default = "ap-northeast-1"
