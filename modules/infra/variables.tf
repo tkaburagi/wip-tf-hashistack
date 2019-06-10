@@ -1,9 +1,19 @@
 variable "vault_instance_count" {
-  default = 1
+  default = 3
 }
+
 variable "consul_instance_count" {
   default = 1
 }
+
+variable "vault_url" {
+  default = "vault.kabuctl.run"
+}
+
+variable "consul_url" {
+  default = "consul.kabuctl.run"
+}
+
 
 variable "access_key" {}
 variable "secret_key" {}

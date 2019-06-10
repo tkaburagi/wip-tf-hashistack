@@ -16,3 +16,8 @@ variable "vault_dl_url" {
 variable "consul_dl_url" {
   default = "https://releases.hashicorp.com/consul/1.5.1/consul_1.5.1_linux_amd64.zip"
 }
+
+variable "ha_flag" {
+  default = false
+  //false, cluster(Multi-AZ Cluster), dr(DR:AWS and GCP)
+}
