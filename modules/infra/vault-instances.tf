@@ -28,9 +28,9 @@ resource "aws_instance" "vault_ec2" {
     }
       inline = [
         "export SERVER_NUM_REPLACE=${var.vault_instance_count}",
-        "export SERVICE_NAME_REPLACE=${var.vault_instance_name}-${count.index}-hashistack",
-        "export API_ADDR_REPLACE=http://${aws_alb.vault_alb.dns_name}",
-        "export CLUSTER_ADDR_REPLACE=https://${self.public_dns}:8201",
+        "export SERVICE_NAME_REPLACE=${var.vault_instance_name}",
+        "export API_ADDR_REPLACE=http://${var.vault_url}",
+        "export CLUSTER_ADDR_REPLACE=https://${var.vault_instance_name}.service.dc1.consul:8201",
         "chmod +x /home/ubuntu/replacer.sh",
         "/home/ubuntu/replacer.sh"
       ]
@@ -61,7 +61,7 @@ resource "aws_instance" "vault_ec2" {
 
                 sleep 60
 
-                nohup ./consul agent -config-dir=/home/ubuntu/consul-server-cluster.json -retry-join "provider=aws tag_key=Consul_server tag_value=true access_key_id=${var.access_key} secret_access_key=${var.secret_key}" > consul.log &
+                nohup ./consul agent -config-dir=/home/ubuntu/consul-client-cluster.json -retry-join "provider=aws tag_key=Consul_server tag_value=true access_key_id=${var.access_key} secret_access_key=${var.secret_key}" > consul.log &
                 nohup ./vault server -config /home/ubuntu/remote-vault.hcl > vault.log &
 
               EOF
