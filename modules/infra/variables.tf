@@ -1,10 +1,17 @@
-variable "vault_instance_count" {
-  default = 3
-}
-
-variable "consul_instance_count" {
-  default = 1
-}
+variable "access_key" {}
+variable "secret_key" {}
+variable "kms_key_id" {}
+variable "ha_flag" {}
+variable "pubkey" {}
+variable "ssh_private_key" {}
+variable "vault_instance_type" {}
+variable "consul_instance_type" {}
+variable "vault_dl_url" {}
+variable "consul_dl_url" {}
+variable "vault_instance_count_ha" {}
+variable "consul_instance_count_ha" {}
+variable "vault_instance_count" {}
+variable "consul_instance_count" {}
 
 variable "vault_url" {
   default = "vault.kabuctl.run"
@@ -13,13 +20,6 @@ variable "vault_url" {
 variable "consul_url" {
   default = "consul.kabuctl.run"
 }
-
-
-variable "access_key" {}
-variable "secret_key" {}
-variable "kms_key_id" {}
-variable "pubkey" {}
-variable "ssh_private_key" {}
 
 variable "availability_zones" {
   type = "list"
@@ -39,21 +39,10 @@ variable "public_subnet_name" {
   default = "public"
 }
 
-variable "vault_instance_type" {
-  default = "t2.micro"
-}
-
-variable "consul_instance_type" {
-  default = "t2.micro"
-}
-
 variable "ami" {
-  default = "ami-64e8fc18"
+  default = "ami-06d9ad3f86032262d"
 }
 
-variable "vault_dl_url" {}
-
-variable "consul_dl_url" {}
 
 variable "aws_route53_zone_id" {
   default = "Z1P2KB2X8LWEX"

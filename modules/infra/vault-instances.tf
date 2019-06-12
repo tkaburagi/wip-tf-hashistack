@@ -8,10 +8,40 @@ resource "aws_instance" "vault_ec2" {
   key_name = aws_key_pair.deployer.id
   associate_public_ip_address = true
 
+  provisioner "file" {
+    connection {
+      type = "ssh"
+      user = "ubuntu"
+      private_key = var.ssh_private_key
+      host = self.public_dns
+    }
+    source      = "/Users/kabu/hashicorp/vault/scripts/replacer.sh"
+    destination = "/home/ubuntu/replacer.sh"
+  }
+
+  provisioner "remote-exec" {
+    connection {
+      type = "ssh"
+      user = "ubuntu"
+      private_key = var.ssh_private_key
+      host = self.public_dns
+    }
+      inline = [
+        "export SERVER_NUM_REPLACE=${var.vault_instance_count}",
+        "export SERVICE_NAME_REPLACE=${var.vault_instance_name}-${count.index}-hashistack",
+        "export API_ADDR_REPLACE=http://${aws_alb.vault_alb.dns_name}",
+        "export CLUSTER_ADDR_REPLACE=https://${self.public_dns}:8201",
+        "chmod +x /home/ubuntu/replacer.sh",
+        "/home/ubuntu/replacer.sh"
+      ]
+  }
+
   user_data =<<-EOF
                 #!/bin/sh
 
                 cd /home/ubuntu
+
+                sudo apt-get install zip unzip
 
                 wget "${var.vault_dl_url}"
                 wget "${var.consul_dl_url}"
@@ -25,18 +55,14 @@ resource "aws_instance" "vault_ec2" {
                 chmod +x vault
                 chmod +x consul
 
-                wget https://raw.githubusercontent.com/tkaburagi/vault-configs/master/remote-vault-template.hcl
-                sed -e 's/SERVICE_NAME_REPLACE/"${var.vault_instance_name}-${count.index}-hashistack"/g' remote-vault-template.hcl > remote-vault-template-2.hcl
-                sed -e 's/API_ADDR_REPLACE/"http:\/\/${var.vault_url}"/g' remote-vault-template-2.hcl > remote-vault.hcl
-
                 export VAULT_AWSKMS_SEAL_KEY_ID=${var.kms_key_id}
                 export AWS_SECRET_ACCESS_KEY=${var.secret_key}
                 export AWS_ACCESS_KEY_ID=${var.access_key}
 
-                nohup ./consul agent -bind=0.0.0.0 -data-dir=/home/ubuntu -retry-join "provider=aws tag_key=Consul_server tag_value=true access_key_id=${var.access_key} secret_access_key=${var.secret_key}" &
-                nohup ./vault server -config /home/ubuntu/remote-vault.hcl &
+                sleep 60
 
-                rm remote-vault-template-*
+                nohup ./consul agent -config-dir=/home/ubuntu/consul-server-cluster.json -retry-join "provider=aws tag_key=Consul_server tag_value=true access_key_id=${var.access_key} secret_access_key=${var.secret_key}" > consul.log &
+                nohup ./vault server -config /home/ubuntu/remote-vault.hcl > vault.log &
 
               EOF
 }

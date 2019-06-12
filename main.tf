@@ -25,4 +25,11 @@ module "infra" {
   pubkey = var.pubkey
   vault_dl_url = var.vault_dl_url
   consul_dl_url = var.consul_dl_url
+  vault_instance_type = var.vault_instance_type
+  consul_instance_type = var.consul_instance_type
+  ha_flag = var.ha_flag
+  vault_instance_count_ha = var.vault_instance_count_ha
+  consul_instance_count_ha = var.consul_instance_count_ha
+  vault_instance_count = var.ha_flag == "false" ? 1 : var.vault_instance_count_ha
+  consul_instance_count = var.ha_flag == "false" ? 1 : var.consul_instance_count_ha
 }
