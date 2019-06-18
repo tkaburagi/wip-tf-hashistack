@@ -32,4 +32,5 @@ module "infra" {
   consul_instance_count_ha = var.consul_instance_count_ha
   vault_instance_count = var.ha_flag == "false" ? 1 : var.vault_instance_count_ha
   consul_instance_count = var.ha_flag == "false" ? 1 : var.consul_instance_count_ha
+  grafana_pw = var.grafana_pw
 }

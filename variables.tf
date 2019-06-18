@@ -8,6 +8,7 @@ variable "vault_instance_type" {}
 variable "consul_instance_type" {}
 variable "vault_instance_count_ha" {}
 variable "consul_instance_count_ha" {}
+variable "grafana_pw" {}
 
 variable "region" {
   default = "ap-northeast-1"

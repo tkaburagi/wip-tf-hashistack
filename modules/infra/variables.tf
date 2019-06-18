@@ -12,6 +12,7 @@ variable "vault_instance_count_ha" {}
 variable "consul_instance_count_ha" {}
 variable "vault_instance_count" {}
 variable "consul_instance_count" {}
+variable "grafana_pw" {}
 
 variable "vault_url" {
   default = "vault.kabuctl.run"
