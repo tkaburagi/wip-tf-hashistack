@@ -1,6 +1,6 @@
 resource "aws_route53_record" "vault" {
   zone_id = var.aws_route53_zone_id
-  name    = "vault.kabuctl.run"
+  name    = var.vault_fqdn
   type    = "CNAME"
   ttl     = "300"
   records = [aws_alb.vault_alb.dns_name]
@@ -8,7 +8,7 @@ resource "aws_route53_record" "vault" {
 
 resource "aws_route53_record" "consul" {
   zone_id = var.aws_route53_zone_id
-  name    = "consul.kabuctl.run"
+  name    = var.consul_fqdn
   type    = "CNAME"
   ttl     = "300"
   records = [aws_alb.consul_alb.dns_name]

@@ -12,3 +12,5 @@ export TF_VAR_vault_instance_type="t2.micro"
 export TF_VAR_ha_flag="false"
 export TF_VAR_vault_instance_count_ha=3
 export TF_VAR_consul_instance_count_ha=3
+export TF_VAR_vault_fqdn="vault.kabuctl.run"
+export TF_VAR_consul_fqdn="consul.kabuctl.run"
