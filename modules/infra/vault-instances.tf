@@ -19,22 +19,22 @@ resource "aws_instance" "vault_ec2" {
     destination = "/home/ubuntu/replacer.sh"
   }
 
-  provisioner "remote-exec" {
-    connection {
-      type = "ssh"
-      user = "ubuntu"
-      private_key = var.ssh_private_key
-      host = self.public_dns
-    }
-      inline = [
-        "export SERVER_NUM_REPLACE=${var.vault_instance_count}",
-        "export SERVICE_NAME_REPLACE=${var.vault_instance_name}",
-        "export API_ADDR_REPLACE=http://${var.vault_url}",
-        "export CLUSTER_ADDR_REPLACE=https://${var.vault_instance_name}.service.dc1.consul:8201",
-        "chmod +x /home/ubuntu/replacer.sh",
-        "/home/ubuntu/replacer.sh"
-      ]
-  }
+//  provisioner "remote-exec" {
+//    connection {
+//      type = "ssh"
+//      user = "ubuntu"
+//      private_key = var.ssh_private_key
+//      host = self.public_dns
+//    }
+//      inline = [
+//        "export SERVER_NUM_REPLACE=${var.vault_instance_count}",
+//        "export SERVICE_NAME_REPLACE=${var.vault_instance_name}",
+//        "export API_ADDR_REPLACE=http://${var.vault_url}",
+//        "export CLUSTER_ADDR_REPLACE=https://${var.vault_instance_name}.service.dc1.consul:8201",
+//        "chmod +x /home/ubuntu/replacer.sh",
+//        "/home/ubuntu/replacer.sh"
+//      ]
+//  }
 
   user_data =<<-EOF
                 #!/bin/sh
@@ -45,6 +45,8 @@ resource "aws_instance" "vault_ec2" {
 
                 wget "${var.vault_dl_url}"
                 wget "${var.consul_dl_url}"
+                wget https://raw.githubusercontent.com/tkaburagi/vault-configs/master/remote-vault-template.hcl
+                wget https://raw.githubusercontent.com/tkaburagi/consul-configs/master/consul-client-cluster-template.json
 
                 unzip vault*.zip
                 rm vault*zip
@@ -55,9 +57,18 @@ resource "aws_instance" "vault_ec2" {
                 chmod +x vault
                 chmod +x consul
 
+                export SERVER_NUM_REPLACE=${var.vault_instance_count}
+                export SERVICE_NAME_REPLACE=${var.vault_instance_name}
+                export API_ADDR_REPLACE=http://${var.vault_url}
+                export CLUSTER_ADDR_REPLACE=https://${var.vault_instance_name}.service.dc1.consul:8201
                 export VAULT_AWSKMS_SEAL_KEY_ID=${var.kms_key_id}
                 export AWS_SECRET_ACCESS_KEY=${var.secret_key}
                 export AWS_ACCESS_KEY_ID=${var.access_key}
+
+                sed "s|SERVER_NUM_REPLACE|`echo $SERVER_NUM_REPLACE`|g" consul-client-cluster-template.json > consul-client-cluster.json
+                sed "s|SERVICE_NAME_REPLACE|`echo $SERVICE_NAME_REPLACE`|g" remote-vault-template.hcl > remote-vault-template-2.hcl
+                sed "s|API_ADDR_REPLACE|`echo $API_ADDR_REPLACE`|g" remote-vault-template-2.hcl > remote-vault-template-3.hcl
+                sed "s|CLUSTER_ADDR_REPLACE|`echo $CLUSTER_ADDR_REPLACE`|g" remote-vault-template-3.hcl > remote-vault.hcl
 
                 sleep 60
 
