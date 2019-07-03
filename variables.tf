@@ -4,8 +4,6 @@ variable "kms_key_id" {}
 variable "ha_flag" {}
 variable "pubkey" {}
 variable "ssh_private_key" {}
-variable "vault_instance_type" {}
-variable "consul_instance_type" {}
 variable "vault_instance_count_ha" {}
 variable "consul_instance_count_ha" {}
 variable "grafana_pw" {}
