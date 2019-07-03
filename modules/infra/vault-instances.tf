@@ -8,16 +8,16 @@ resource "aws_instance" "vault_ec2" {
   key_name = aws_key_pair.deployer.id
   associate_public_ip_address = true
 
-  provisioner "file" {
-    connection {
-      type = "ssh"
-      user = "ubuntu"
-      private_key = var.ssh_private_key
-      host = self.public_dns
-    }
-    source      = "/Users/kabu/hashicorp/vault/scripts/replacer.sh"
-    destination = "/home/ubuntu/replacer.sh"
-  }
+//  provisioner "file" {
+//    connection {
+//      type = "ssh"
+//      user = "ubuntu"
+//      private_key = var.ssh_private_key
+//      host = self.public_dns
+//    }
+//    source      = "/Users/kabu/hashicorp/vault/scripts/replacer.sh"
+//    destination = "/home/ubuntu/replacer.sh"
+//  }
 
 //  provisioner "remote-exec" {
 //    connection {
