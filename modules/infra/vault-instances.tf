@@ -8,34 +8,6 @@ resource "aws_instance" "vault_ec2" {
   key_name = aws_key_pair.deployer.id
   associate_public_ip_address = true
 
-//  provisioner "file" {
-//    connection {
-//      type = "ssh"
-//      user = "ubuntu"
-//      private_key = var.ssh_private_key
-//      host = self.public_dns
-//    }
-//    source      = "/Users/kabu/hashicorp/vault/scripts/replacer.sh"
-//    destination = "/home/ubuntu/replacer.sh"
-//  }
-
-//  provisioner "remote-exec" {
-//    connection {
-//      type = "ssh"
-//      user = "ubuntu"
-//      private_key = var.ssh_private_key
-//      host = self.public_dns
-//    }
-//      inline = [
-//        "export SERVER_NUM_REPLACE=${var.vault_instance_count}",
-//        "export SERVICE_NAME_REPLACE=${var.vault_instance_name}",
-//        "export API_ADDR_REPLACE=http://${var.vault_url}",
-//        "export CLUSTER_ADDR_REPLACE=https://${var.vault_instance_name}.service.dc1.consul:8201",
-//        "chmod +x /home/ubuntu/replacer.sh",
-//        "/home/ubuntu/replacer.sh"
-//      ]
-//  }
-
   user_data =<<-EOF
                 #!/bin/sh
 
