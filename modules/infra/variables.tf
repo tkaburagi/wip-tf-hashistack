@@ -16,10 +16,10 @@ variable "vault_fqdn" {}
 variable "consul_fqdn" {}
 
 variable "vault_instance_type" {
-  default = "t2.small"
+  default = "t2.large"
 }
 variable "consul_instance_type" {
-  default = "t2.small"
+  default = "t2.large"
 }
 
 variable "vault_url" {
