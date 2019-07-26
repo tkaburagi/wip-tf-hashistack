@@ -13,3 +13,8 @@ resource "aws_route53_record" "consul" {
   ttl     = "300"
   records = [aws_alb.consul_alb.dns_name]
 }
+
+provider "aws" {
+  access_key = var.access_key
+  secret_key = var.secret_key
+}

@@ -16,6 +16,7 @@ provider "aws" {
   region     = var.region
 }
 
+
 module "infra" {
   source = "./modules/infra"
   kms_key_id = var.kms_key_id

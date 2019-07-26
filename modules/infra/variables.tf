@@ -4,7 +4,6 @@ variable "kms_key_id" {}
 variable "ha_flag" {}
 variable "pubkey" {}
 variable "ssh_private_key" {}
-
 variable "vault_dl_url" {}
 variable "consul_dl_url" {}
 variable "vault_instance_count_ha" {}
