@@ -10,13 +10,14 @@ terraform {
   }
 }
 
+providers "aws" {
+  access_key = var.access_key
+  secret_key = var.secret_key
+  region     = var.region
+}
+
 module "infra" {
   source = "./modules/infra"
-  providers "aws" {
-    access_key = var.access_key
-    secret_key = var.secret_key
-    region     = var.region
-  }
   kms_key_id = var.kms_key_id
   access_key = var.access_key
   secret_key = var.secret_key
